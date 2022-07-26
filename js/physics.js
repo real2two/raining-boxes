@@ -67,9 +67,8 @@ Events.on(engine, 'collisionStart', e => {
                 grabPoint.rate((Math.random() * .2) + 1);
                 grabPoint.play();
             } else {
-                if (--hp === 0) return endGame();
-
                 hitSound.play();
+                if (--hp === 0) return endGame();
             }
             
             particles.using.splice(particles.using.indexOf(body), 1);
