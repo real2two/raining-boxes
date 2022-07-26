@@ -1,5 +1,3 @@
-//const MAX_DISTANCE = 800;
-
 let gameStarted;
 let gamePaused;
 let gameEnded = false;
@@ -29,9 +27,6 @@ const engine = Engine.create({
     positionIterations: 10,
     velocityIterations: 30
 });
-
-//const maxLeft = Bodies.rectangle(-MAX_DISTANCE - 30, -1000, 30, 1100, { isStatic: true, restitution: 1 });
-//const maxRight = Bodies.rectangle(MAX_DISTANCE, -1000, 30, 1100, { isStatic: true, restitution: 1 });
 
 const ground = Bodies.rectangle(0, 100, 90, 30, { isStatic: true, friction: 0.3, restitution: 0.6 });
 const player = Bodies.rectangle(0, 0, 30, 30, { friction: 0.3, restitution: 0 });
@@ -90,7 +85,7 @@ for (let i = 0; i < 1000; ++i) {
     particles.unused.push(Bodies.rectangle(0, 0, 5, 5, { friction: 0.3, restitution: 0 }));
 }
 
-Composite.add(engine.world, [ ground, player ]); // , maxLeft, maxRight
+Composite.add(engine.world, [ ground, player ]);
 
 let lastUpdated = 0;
 let lastUpdatedOffset = 0;

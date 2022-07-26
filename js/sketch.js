@@ -19,30 +19,17 @@ function setup() {
             Body.applyForce(player, player.position, { x: 0, y: -.05 });
         }
 
-        //const collidingSides = {
-        //    left: Collision.collides(player, maxLeft) || { collided: false },
-        //    right: Collision.collides(player, maxRight) || { collided: false }
-        //}
-
-        if (keyIsDown(65)) { // A // && collidingSides.left.collided === false
+        if (keyIsDown(65)) { // A
             Body.applyForce(player, player.position, { x: -.005, y: 0 });
         }
 
-        if (keyIsDown(68)) { // D // && collidingSides.right.collided === false
+        if (keyIsDown(68)) { // D
             Body.applyForce(player, player.position, { x: .005, y: 0 });
         }
 
         // Ground and corners.
 
         Body.setPosition(ground, { x: player.position.x, y: 100 });
-
-        //if (player.position.x > MAX_DISTANCE) {
-        //    Body.setPosition(player, { x: MAX_DISTANCE, y: player.position.y });
-        //}
-
-        //if (player.position.x < -MAX_DISTANCE) {
-        //    Body.setPosition(player, { x: -MAX_DISTANCE, y: player.position.y });
-        //}
 
         // Particles
 
@@ -66,7 +53,7 @@ function setup() {
             }
 
             Body.setPosition(particle, {
-                x, //: x > MAX_DISTANCE ? MAX_DISTANCE : (x < -MAX_DISTANCE ? -MAX_DISTANCE : x),
+                x,
                 y: -1000
             });
 
@@ -95,7 +82,6 @@ function draw() {
     background(222);
 
     const waves = [
-        // Mountains on the back.
         {
             r: 200,
             g: 200,
@@ -157,11 +143,6 @@ function draw() {
         square(0, 0, particle === pointParticle ? 10 : 5);
         pop();
     }
-
-    //translatePush(0, 0);
-    //rectMode(CENTER);
-    //square(0, 0, 30);
-    //pop();
 
     if (gameEnded) {
         push();
