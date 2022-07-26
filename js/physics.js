@@ -56,11 +56,14 @@ Events.on(engine, 'collisionStart', e => {
 
             if (pointParticle === body) {
                 ++points;
+
                 if (particleDifficulty > 0) --particleDifficulty;
                 pointParticle = null;
 
                 grabPoint.rate((Math.random() * .2) + 1);
                 grabPoint.play();
+
+                if (points >= 10 && points <= 25) audioTrack.rate(1 + (((points - 10) / 15) ** 2))
             } else {
                 hitSound.play();
                 if (--hp === 0) return endGame();
@@ -115,6 +118,8 @@ function endGame() {
     gameEnded = true;
 
     gameStarted = null;
+
+    if (!audioTrack.paused) audioTrack.stop();
 }
 
 window.onblur = () => {

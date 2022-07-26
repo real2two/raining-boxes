@@ -1,10 +1,17 @@
+let audioTrack;
+
 let grabPoint;
+let hitSound;
 
 function preload() {
-    soundFormats('mp3', 'ogg');
-    grabPoint = loadSound('sounds/point.mp3');
-    hitSound = loadSound('sounds/hit.mp3');
+    soundFormats('mp3', 'wav');
 
+    audioTrack = loadSound('sounds/music/arp.wav');
+
+    grabPoint = loadSound('sounds/sfx/point.mp3');
+    hitSound = loadSound('sounds/sfx/hit.mp3');
+
+    audioTrack.setVolume(.4);
     hitSound.setVolume(.35);
 }
 
@@ -199,6 +206,9 @@ function keyPressed() {
 
     gameStarted = performance.now();
     lastUpdated = performance.now();
+
+    audioTrack.rate(1);
+    audioTrack.loop();
 
     updatePhysicsLoop();
 }
