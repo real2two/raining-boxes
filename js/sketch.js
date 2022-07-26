@@ -1,3 +1,13 @@
+let grabPoint;
+
+function preload() {
+    soundFormats('mp3', 'ogg');
+    grabPoint = loadSound('sounds/point.mp3');
+    hitSound = loadSound('sounds/hit.mp3');
+
+    hitSound.setVolume(.35);
+}
+
 function setup() {
     createCanvas(window.innerWidth, window.innerHeight);
 

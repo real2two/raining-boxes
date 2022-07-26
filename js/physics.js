@@ -63,8 +63,13 @@ Events.on(engine, 'collisionStart', e => {
                 ++points;
                 if (particleDifficulty > 0) --particleDifficulty;
                 pointParticle = null;
+
+                grabPoint.rate((Math.random() * .2) + 1);
+                grabPoint.play();
             } else {
                 if (--hp === 0) return endGame();
+
+                hitSound.play();
             }
             
             particles.using.splice(particles.using.indexOf(body), 1);
