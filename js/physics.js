@@ -10,6 +10,9 @@ let stayedAliveFor;
 
 let lastParticleCollision;
 
+let throwParticle = 0;
+let particleDifficulty = 25;
+
 let touchingGround = false;
 let hp = 5;
 let points = 0;
@@ -58,6 +61,7 @@ Events.on(engine, 'collisionStart', e => {
 
             if (pointParticle === body) {
                 ++points;
+                if (particleDifficulty > 0) --particleDifficulty;
                 pointParticle = null;
             } else {
                 if (--hp === 0) return endGame();

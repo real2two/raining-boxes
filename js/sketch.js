@@ -1,7 +1,6 @@
 function setup() {
     createCanvas(window.innerWidth, window.innerHeight);
 
-    //let throwParticle = 0;
     Events.on(engine, 'beforeUpdate', () => {
         // Movement
 
@@ -37,11 +36,13 @@ function setup() {
 
         // Particles
 
-        //++throwParticle;
-        //if (throwParticle !== 1) {
-        //    if (++throwParticle > 50) throwParticle = 0;
-        //    return;
-        //};
+        if (particleDifficulty !== 0) {
+            ++throwParticle;
+            if (throwParticle !== 1) {
+                if (++throwParticle > particleDifficulty) throwParticle = 0;
+                return;
+            };
+        }
 
         if (particles.unused.length !== 0) {
             const particle = particles.unused.shift();
@@ -201,6 +202,9 @@ function keyPressed() {
 
     gameEnded = false;
     stayedAliveFor = null;
+
+    throwParticle = 0;
+    particleDifficulty = 25;
 
     gameStarted = performance.now();
     lastUpdated = performance.now();
