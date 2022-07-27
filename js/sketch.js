@@ -52,11 +52,11 @@ function setup() {
             const particle = particles.unused.shift();
             let x;
 
-            if (pointParticle) {
-                x = (Math.random() * 14400) + player.position.x - 6400;
-            } else {
-                pointParticle = particle;
+            if (pointParticle.length < maxGreenBoxes && Math.floor(Math.random() * pointParticle.length * 2) === 0) {
+                pointParticle.push(particle);
                 x = (Math.random() * 400) + player.position.x - 200;
+            } else {
+                x = (Math.random() * 14400) + player.position.x - 6400;
             }
 
             Body.setPosition(particle, {
@@ -72,7 +72,9 @@ function setup() {
         const toRemove = [];
         for (const particle of particles.using) {
             if (particle.position.y > 200) {
-                if (pointParticle === particle) pointParticle = null;
+                if (pointParticle.includes(particle)) {
+                    pointParticle.splice(pointParticle.indexOf(particle), 1);
+                }
 
                 toRemove.push(particle);
 
@@ -146,8 +148,8 @@ function draw() {
         rectMode(CENTER);
         rotate(particle.angle);
         noStroke();
-        fill(particle === pointParticle ? "green" : "red");
-        square(0, 0, particle === pointParticle ? 10 : 5);
+        fill(pointParticle.includes(particle) ? "green" : "red");
+        square(0, 0, pointParticle.includes(particle) ? 10 : 5);
         pop();
     }
 
@@ -168,7 +170,7 @@ function draw() {
     } else {
         push();
         textSize(30);
-        text(`HP: ${hp}\nScore: ${points} points\nTimer: ${timeBeforePaused|| timer()} seconds`, 30, 50);
+        text(`HP: ${hp}\nScore: ${points} points\nTimer: ${timeBeforePaused || timer()} seconds`, 30, 50);
         pop();
     }
 }
@@ -185,7 +187,7 @@ function translatePush(translateX, translateY) {
 function keyPressed() {
     if (!keyIsDown(32) || gameStarted) return;
 
-    pointParticle = null;
+    pointParticle = [];
     Composite.remove(engine.world, particles.using);
     for (const particle of particles.using) particles.unused.push(particle);
     particles.using = [];
@@ -206,6 +208,8 @@ function keyPressed() {
 
     throwParticle = 0;
     particleDifficulty = 25;
+
+    maxGreenBoxes = 3;
 
     gameStarted = performance.now();
     lastUpdated = performance.now();

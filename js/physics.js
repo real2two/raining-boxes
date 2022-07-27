@@ -9,7 +9,10 @@ let stayedAliveFor;
 let lastParticleCollision;
 
 let throwParticle = 0;
-let particleDifficulty = 25;
+let particleDifficulty = 25; // lower = easier
+
+let pointParticle = [];
+let maxGreenBoxes = 3;
 
 let touchingGround = false;
 let hp = 5;
@@ -51,19 +54,20 @@ Events.on(engine, 'collisionStart', e => {
             
             lastParticleCollision = {
                 start: performance.now(),
-                type: pointParticle === body // false = damaged, true = point
+                type: pointParticle.includes(body) // false = damaged, true = point
             };
 
-            if (pointParticle === body) {
+            if (pointParticle.includes(body)) {
                 ++points;
 
                 if (particleDifficulty > 0) --particleDifficulty;
-                pointParticle = null;
+                pointParticle.splice(pointParticle.indexOf(body), 1);
 
                 grabPoint.rate((Math.random() * .2) + 1);
                 grabPoint.play();
 
                 if (points >= 10 && points <= 25) audioTrack.rate(1 + (((points - 10) / 15) ** 2))
+                if (points % 15 === 0 && maxGreenBoxes > 1) --maxGreenBoxes; 
             } else {
                 hitSound.play();
                 if (--hp === 0) return endGame();
@@ -81,8 +85,6 @@ const particles = {
     unused: [],
     using: []
 }
-
-let pointParticle;
 
 for (let i = 0; i < 1000; ++i) {
     particles.unused.push(Bodies.rectangle(0, 0, 5, 5, { friction: 0.3, restitution: 0 }));
