@@ -59,8 +59,9 @@ Events.on(engine, 'collisionStart', e => {
 
             if (pointParticle.includes(body)) {
                 ++points;
-
                 if (particleDifficulty > 0) --particleDifficulty;
+
+                Body.scale(body, .4, .4);
                 pointParticle.splice(pointParticle.indexOf(body), 1);
 
                 grabPoint.rate((Math.random() * .2) + 1);

@@ -54,6 +54,7 @@ function setup() {
 
             if (pointParticle.length < maxGreenBoxes && Math.floor(Math.random() * pointParticle.length * 2) === 0) {
                 pointParticle.push(particle);
+                Body.scale(particle, 2.5, 2.5);
                 x = (Math.random() * 400) + player.position.x - 200;
             } else {
                 x = (Math.random() * 14400) + player.position.x - 6400;
@@ -73,6 +74,7 @@ function setup() {
         for (const particle of particles.using) {
             if (particle.position.y > 200) {
                 if (pointParticle.includes(particle)) {
+                    Body.scale(particle, 0.4, 0.4);
                     pointParticle.splice(pointParticle.indexOf(particle), 1);
                 }
 
@@ -149,7 +151,7 @@ function draw() {
         rotate(particle.angle);
         noStroke();
         fill(pointParticle.includes(particle) ? "green" : "red");
-        square(0, 0, pointParticle.includes(particle) ? 10 : 5);
+        square(0, 0, pointParticle.includes(particle) ? 12.5 : 9);
         pop();
     }
 
@@ -185,6 +187,7 @@ function translatePush(translateX, translateY) {
 }
 
 function keyPressed() {
+    if (!audioTrack.isLoaded() || !grabPoint.isLoaded() || !hitSound.isLoaded()) return;
     if (!keyIsDown(32) || gameStarted) return;
 
     pointParticle = [];
