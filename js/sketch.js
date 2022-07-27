@@ -159,19 +159,19 @@ function draw() {
         push();
         translate(canvas.width / 2, canvas.height / 2.5);
         textAlign(CENTER);
-        textSize(20);
+        textSize(20 * (height / 720));
         text(`You lose!\nScore: ${points} points\nStayed alive for ${stayedAliveFor} seconds.\n\nClick SPACE to restart.`, 0, 0);
         pop();
     } else if (!gameStarted) {
         push();
         translate(width / 2, height / 2);
         textAlign(CENTER);
-        textSize(50);
+        textSize(50 * (height / 720));
         text(`Click SPACE to start.`, 0, 0);
         pop();
     } else {
         push();
-        textSize(15);
+        textSize(25 * (height / 720));
         text(`HP: ${hp}\nScore: ${points} points\nTimer: ${timeBeforePaused || timer()} seconds`, 30, 50);
         pop();
     }
