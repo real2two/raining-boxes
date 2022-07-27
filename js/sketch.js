@@ -198,6 +198,9 @@ function keyPressed() {
     physicsOffset = null;
     physicsLoop = null;
 
+    Body.setVelocity(player, { x: 0, y: 0 });
+    Body.setAngularVelocity(player, 0);
+
     gameEnded = false;
     stayedAliveFor = null;
 
