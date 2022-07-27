@@ -159,7 +159,7 @@ function draw() {
         push();
         translate(canvas.width / 2, canvas.height / 2.5);
         textAlign(CENTER);
-        textSize(30);
+        textSize(20);
         text(`You lose!\nScore: ${points} points\nStayed alive for ${stayedAliveFor} seconds.\n\nClick SPACE to restart.`, 0, 0);
         pop();
     } else if (!gameStarted) {
@@ -171,7 +171,7 @@ function draw() {
         pop();
     } else {
         push();
-        textSize(30);
+        textSize(15);
         text(`HP: ${hp}\nScore: ${points} points\nTimer: ${timeBeforePaused || timer()} seconds`, 30, 50);
         pop();
     }
