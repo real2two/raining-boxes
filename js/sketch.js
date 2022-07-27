@@ -164,7 +164,7 @@ function draw() {
         pop();
     } else if (!gameStarted) {
         push();
-        translate(canvas.width / 2, canvas.height / 2);
+        translate(width / 2, height / 2);
         textAlign(CENTER);
         textSize(50);
         text(`Click SPACE to start.`, 0, 0);
