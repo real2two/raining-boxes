@@ -12,6 +12,7 @@ window.onfocus = () => {
 
     gameStarted += toAdd;
     lastUpdated += toAdd;
+    
     if (lastParticleCollision) lastParticleCollision.start += toAdd;
 
     timeBeforePaused = null;
