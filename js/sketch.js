@@ -21,16 +21,16 @@ function setup() {
     Events.on(engine, 'beforeUpdate', () => {
         // Movement
 
-        if (keyIsDown(87) && touchingGround === true) { // W
+        if ((keyIsDown(38) || keyIsDown(87)) && touchingGround === true) { // W
             touchingGround = false;
             Body.applyForce(player, player.position, { x: 0, y: -.05 });
         }
 
-        if (keyIsDown(65)) { // A
+        if (keyIsDown(37) || keyIsDown(65)) { // A
             Body.applyForce(player, player.position, { x: -.005, y: 0 });
         }
 
-        if (keyIsDown(68)) { // D
+        if (keyIsDown(39) || keyIsDown(68)) { // D
             Body.applyForce(player, player.position, { x: .005, y: 0 });
         }
 
