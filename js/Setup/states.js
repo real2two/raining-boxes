@@ -11,7 +11,7 @@ let lastParticleCollision;
 let throwParticle = 0;
 let particleDifficulty = 25; // lower = easier
 
-let speed = 1;
+let playerSpeed = 1;
 
 let pointParticle = [];
 let maxGreenBoxes = 3;

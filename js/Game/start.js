@@ -24,7 +24,7 @@ function keyPressed() {
     throwParticle = 0;
     particleDifficulty = 25;
 
-    speed = 1;
+    playerSpeed = 1;
 
     maxGreenBoxes = 3;
 
@@ -33,6 +33,11 @@ function keyPressed() {
 
     audioTrack.rate(1);
     audioTrack.loop();
+
+    Body.setPosition(player, {
+        x: 0,
+        y: 0
+    });
 
     updatePhysicsLoop();
 }

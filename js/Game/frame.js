@@ -7,11 +7,11 @@ Events.on(engine, 'beforeUpdate', () => {
     }
 
     if (keyIsDown(37) || keyIsDown(65)) { // left arrow key, a
-        Body.applyForce(player, player.position, { x: -.005 * speed, y: 0 });
+        Body.applyForce(player, player.position, { x: -.005 * playerSpeed, y: 0 });
     }
 
     if (keyIsDown(39) || keyIsDown(68)) { // right arrow key, d
-        Body.applyForce(player, player.position, { x: .005 * speed, y: 0 });
+        Body.applyForce(player, player.position, { x: .005 * playerSpeed, y: 0 });
     }
 
     // Ground and corners.
@@ -65,4 +65,8 @@ Events.on(engine, 'beforeUpdate', () => {
         }
     }
     Composite.remove(engine.world, toRemove);
+
+    if (player.position.y > 200) {
+        return endGame();
+    }
 });

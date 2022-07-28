@@ -32,7 +32,7 @@ Events.on(engine, 'collisionStart', e => {
                 if (points >= 10 && points <= 25) audioTrack.rate(1 + (((points - 10) / 15) ** 2))
                 if (points % 15 === 0 && maxGreenBoxes > 1) --maxGreenBoxes; 
 
-                if (points > 20) speed += 0.01;
+                if (points > 20) playerSpeed += 0.01;
             } else {
                 hitSound.play();
                 if (--hp === 0) return endGame();
