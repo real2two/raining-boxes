@@ -19,3 +19,5 @@ let maxGreenBoxes = 3;
 let touchingGround = false;
 let hp = 5;
 let points = 0;
+
+let maxParticlesToAdd = 1;

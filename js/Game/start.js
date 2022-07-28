@@ -23,6 +23,7 @@ function keyPressed() {
 
     throwParticle = 0;
     particleDifficulty = 25;
+    maxParticlesToAdd = 1;
 
     playerSpeed = 1;
 

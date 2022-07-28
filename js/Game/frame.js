@@ -28,26 +28,28 @@ Events.on(engine, 'beforeUpdate', () => {
         };
     }
 
-    if (particles.unused.length !== 0) {
-        const particle = particles.unused.shift();
-        let x;
-
-        if (pointParticle.length < maxGreenBoxes && Math.floor(Math.random() * pointParticle.length * 2) === 0) {
-            pointParticle.push(particle);
-            Body.scale(particle, 2.5, 2.5);
-            x = (Math.random() * 400) + player.position.x - 200;
-        } else {
-            x = (Math.random() * 14400) + player.position.x - 6400;
+    for (let i = 0; i < maxParticlesToAdd; ++i) {
+        if (particles.unused.length !== 0) {
+            const particle = particles.unused.shift();
+            let x;
+    
+            if (pointParticle.length < maxGreenBoxes && Math.floor(Math.random() * pointParticle.length * 2) === 0) {
+                pointParticle.push(particle);
+                Body.scale(particle, 2.5, 2.5);
+                x = (Math.random() * 400) + player.position.x - 200;
+            } else {
+                x = (Math.random() * 14400) + player.position.x - 6400;
+            }
+    
+            Body.setPosition(particle, {
+                x,
+                y: -1000
+            });
+    
+            Composite.add(engine.world, particle);
+    
+            particles.using.push(particle);
         }
-
-        Body.setPosition(particle, {
-            x,
-            y: -1000
-        });
-
-        Composite.add(engine.world, particle);
-
-        particles.using.push(particle);
     }
 
     const toRemove = [];
