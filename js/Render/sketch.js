@@ -97,5 +97,5 @@ function windowResized() {
 
 function translatePush(translateX, translateY) {
     push();
-    translate(translateX - player.positionPrev.x + (window.innerWidth / 2), translateY - player.positionPrev.y + (window.innerHeight / 1.5));
+    translate(translateX - player.position.x + (window.innerWidth / 2), translateY - player.position.y + (window.innerHeight / 1.5));
 }

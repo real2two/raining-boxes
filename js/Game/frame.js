@@ -7,15 +7,18 @@ Events.on(engine, 'beforeUpdate', () => {
     }
 
     if (keyIsDown(37) || keyIsDown(65)) { // left arrow key, a
-        Body.applyForce(player, player.position, { x: -.005 * playerSpeed, y: 0 });
+        for (let i = 0; i < (player.velocity.x > 0 ? 3 : 1); ++i) {
+            Body.applyForce(player, player.position, { x: -.005 * playerSpeed, y: 0 });
+        }
+    } else if (keyIsDown(39) || keyIsDown(68)) { // right arrow key, d
+        for (let i = 0; i < (player.velocity.x < 0 ? 3 : 1); ++i) {
+            Body.applyForce(player, player.position, { x: .005 * playerSpeed, y: 0 });
+        }
+    } else {
+        Body.setVelocity(player, { x: player.velocity.x / 100, y: player.velocity.y });
     }
-
-    if (keyIsDown(39) || keyIsDown(68)) { // right arrow key, d
-        Body.applyForce(player, player.position, { x: .005 * playerSpeed, y: 0 });
-    }
-
+    
     // Ground and corners.
-
     Body.setPosition(ground, { x: player.position.x, y: 100 });
 
     // Particles
@@ -71,4 +74,9 @@ Events.on(engine, 'beforeUpdate', () => {
     if (player.position.y > 200) {
         return endGame();
     }
+});
+
+Events.on(engine, 'afterUpdate', () => {
+    // Ground and corners.
+    Body.setPosition(ground, { x: player.position.x, y: 100 });
 });
